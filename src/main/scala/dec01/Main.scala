@@ -9,9 +9,9 @@ object Main extends  App{
   @transient lazy val conf: SparkConf = new SparkConf().setMaster("local").setAppName("AdventOfCode")
   @transient lazy val sc: SparkContext = new SparkContext(conf)
 
-  val lines   = sc.textFile("src/main/resources/input_01.txt")
+  val rawData   = sc.textFile("src/main/resources/input_01.txt")
 
-  val signedData = lines.map(s => {
+  val signedData = rawData.map(s => {
     val int = s.tail.toInt
     val f: Int = s.head match {
       case '+' =>  int
