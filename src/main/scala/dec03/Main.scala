@@ -19,13 +19,13 @@ object Main extends  App{
     case parsingRegex(id, x, y, w, h) => WorkArea(id.toInt, x.toInt, y.toInt, w.toInt, h.toInt)
   }
 
-  val workMapPolarCoordinatesBySquareInch = for {
+  val workMapBySquareInch = for {
     workingArea <- workMap
     x <- 0 until workingArea.width
     y <- 0 until workingArea.height
   } yield (x + workingArea.x, y + workingArea.y)
 
-  val solutionA = workMapPolarCoordinatesBySquareInch.groupBy(s => (s._1, s._2)).filter(_._2.size > 1).count()
+  val solutionA = workMapBySquareInch.groupBy(s => (s._1, s._2)).filter(_._2.size > 1).count()
 
   println(solutionA)
 
