@@ -11,14 +11,7 @@ object Main extends  App{
 
   val rawData   = sc.textFile("src/main/resources/input_01.txt")
 
-  val signedData = rawData.map(s => {
-    val int = s.tail.toInt
-    val f: Int = s.head match {
-      case '+' =>  int
-      case '-' => -1 * int
-    }
-    f
-  })
+  val signedData = rawData.map(s => s.toInt )
 
   def sumAcc(acc:Int, value:Int):Int = {acc + value}
 
