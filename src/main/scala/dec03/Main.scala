@@ -23,12 +23,17 @@ object Main extends  App{
     workingArea <- workMap
     x <- 0 until workingArea.width
     y <- 0 until workingArea.height
-  } yield (x + workingArea.x, y + workingArea.y)
+  } yield (workingArea.elvenId,x + workingArea.x, y + workingArea.y, workingArea.width * workingArea.height)
 
-  val solutionA = workMapBySquareInch.groupBy(s => (s._1, s._2)).filter(_._2.size > 1).count()
+  val solutionA = workMapBySquareInch.groupBy(s => (s._2, s._3)).filter(_._2.size > 1).count()
 
   println(solutionA)
 
+
+  val solutionB = workMapBySquareInch.groupBy(s =>  (s._2, s._3)).filter(_._2.size == 1).values
+    .flatMap(identity).groupBy(_._1).filter( i => i._2.size == i._2.head._4).keys.first()
+
+  println(solutionB)
 
   sc.stop()
 
